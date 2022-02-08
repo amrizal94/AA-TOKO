@@ -30,10 +30,6 @@ class ComposerStaticInit9e5c0d086a0111bf97dfe0f1e7e25ffc
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
         ),
-        'M' => 
-        array (
-            'Mike42\\' => 7,
-        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -64,11 +60,6 @@ class ComposerStaticInit9e5c0d086a0111bf97dfe0f1e7e25ffc
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
-        'Mike42\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42',
-            1 => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42',
-        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -91,7 +82,6 @@ class ComposerStaticInit9e5c0d086a0111bf97dfe0f1e7e25ffc
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',

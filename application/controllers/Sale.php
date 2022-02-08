@@ -193,11 +193,13 @@ class Sale extends CI_Controller {
             $data['disc_jml'] = "ada"; 
         }
 
-        $this->load->view('sale/receipt_print', $data);
-        // $this->_cetak($data);
+        // $this->load->view('sale/receipt_print', $data);
+        $this->_cetak($data);
     }
 
     private function _cetak($d) {
+        // me-load library escpos
+        $this->load->library('escpos');
 
         function buatBaris1Kolom($kolom1)
         {
@@ -272,23 +274,24 @@ class Sale extends CI_Controller {
         }
 
         $data = $d;
-        $profile = CapabilityProfile::load("simple");
-        $connector = new WindowsPrintConnector("printer_ci");
-        $printer = new Printer($connector, $profile);
+        // membuat connector printer ke shared printer bernama "printer_a" (yang telah disetting sebelumnya)
+        $connector = new Escpos\PrintConnectors\WindowsPrintConnector("printer_ci");
+        // membuat objek $printer agar dapat di lakukan fungsinya
+        $printer = new Escpos\Printer($connector);
 
         $printer->initialize();
-        $printer->selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->selectPrintMode(Escpos\Printer::MODE_DOUBLE_WIDTH);
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text(buatBaris1Kolom($data['setting_shop']['shop_name']));
 
         $printer->initialize();
-        $printer->setJustification(Printer::JUSTIFY_CENTER);
-        $printer->selectPrintMode(Printer::MODE_FONT_A);
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+        $printer->selectPrintMode(Escpos\Printer::MODE_FONT_A);
         $printer->text(buatBaris1Kolom($data['setting_shop']['address']));
         $printer->text(buatBaris1Kolom($data['setting_shop']['telp']));
         
         $printer->initialize();
-        $printer->selectPrintMode(Printer::MODE_FONT_B);
+        $printer->selectPrintMode(Escpos\Printer::MODE_FONT_B);
         $printer->text(buatBaris1Kolom("---------------------------------"));
 
         $printer->text(buatBaris3Kolom(date('d/m/Y', strtotime($data['sale']->date)), "Kasir : ", $data['sale']->user_name));
@@ -312,8 +315,8 @@ class Sale extends CI_Controller {
         $printer->text("\n");
 
         $printer->initialize();
-        $printer->selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
-        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->selectPrintMode(Escpos\Printer::MODE_DOUBLE_HEIGHT);
+        $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
         $printer->text(buatBaris1Kolom("Terima Kasih, Selamat belanja kembali."));
         
         $printer->feed(4);
