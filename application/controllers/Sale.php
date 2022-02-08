@@ -194,7 +194,7 @@ class Sale extends CI_Controller {
         }
 
         $this->load->view('sale/receipt_print', $data);
-        $this->_cetak($data);
+        // $this->_cetak($data);
     }
 
     private function _cetak($d) {
