@@ -315,5 +315,9 @@ class Sale extends CI_Controller {
         $printer->selectPrintMode(Printer::MODE_DOUBLE_HEIGHT);
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer->text(buatBaris1Kolom("Terima Kasih, Selamat belanja kembali."));
+        
+        $printer->feed(4);
+        $printer->cut();
+        $printer->close();
     }
 } 
